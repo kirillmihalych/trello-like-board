@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1 class="text-3xl font-bold underline">Hello world!(again)</h1>
+    <TrelloBoard />
   </div>
 </template>
