@@ -3,6 +3,7 @@ import type { Column } from '@/types'
 import draggable from 'vuedraggable'
 import { nanoid } from 'nanoid'
 import TrelloBoardTask from './TrelloBoardTask.vue'
+import DragHandle from './DragHandle.vue'
 
 const columns = ref<Column[]>([
   {
@@ -51,10 +52,13 @@ const columns = ref<Column[]>([
       group="columns"
       item-key="id"
       class="flex gap-4 overflow-x-auto items-start"
+      :animation="150"
+      handle=".drag-handle"
     >
       <template #item="{ element: column }: { element: Column }">
         <div class="column bg-gray-200 p-5 rounded min-w-[250px]">
           <header class="font-bold mb-4">
+            <DragHandle />
             {{ column.title }}
           </header>
           <TrelloBoardTask
