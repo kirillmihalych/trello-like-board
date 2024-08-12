@@ -4,6 +4,7 @@ import draggable from 'vuedraggable'
 import { nanoid } from 'nanoid'
 import TrelloBoardTask from './TrelloBoardTask.vue'
 import DragHandle from './DragHandle.vue'
+import { useKeyModifier } from '@vueuse/core'
 
 const columns = ref<Column[]>([
   {
@@ -43,6 +44,8 @@ const columns = ref<Column[]>([
     tasks: [],
   },
 ])
+
+const alt = useKeyModifier('Alt')
 </script>
 
 <template>
@@ -63,7 +66,7 @@ const columns = ref<Column[]>([
           </header>
           <draggable
             v-model="column.tasks"
-            group="tasks"
+            :group="{ name: 'tasks', pull: alt ? 'clone' : true }"
             handle=".drag-handle"
             item-key="id"
             :animation="150"
